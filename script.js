@@ -3,6 +3,7 @@ const game = {
 	gameStart() {
 		playerOne.isRound = true;
 		this.addListener();
+		displayController.showPlayer();
 	},
 	switchPlayer() {
 		playerOne.isRound = !playerOne.isRound;
@@ -28,6 +29,7 @@ const game = {
 			displayController.showScore();
 			displayController.reset();
 		} else if (this.gameBoard.includes("")) {
+			displayController.showPlayer();
 		} else {
 			console.log("THAT IS A TIE!");
 			displayController.showScore();
@@ -37,6 +39,7 @@ const game = {
 	reset() {
 		this.gameBoard = ["", "", "", "", "", "", "", "", ""];
 		this.addListener();
+		displayController.showPlayer();
 	},
 	addListener() {
 		const eventHandler = document.querySelectorAll(".field-block");
@@ -92,6 +95,17 @@ const displayController = {
 		const p2Score = document.querySelector(".score2");
 		p1Score.innerText = playerOne.score;
 		p2Score.innerText = playerTwo.score;
+	},
+	showPlayer() {
+		const p1 = document.querySelector(".p1");
+		const p2 = document.querySelector(".p2");
+		if (playerOne.isRound) {
+			p1.classList.add("is-round");
+			p2.classList.remove("is-round");
+		} else {
+			p2.classList.add("is-round");
+			p1.classList.remove("is-round");
+		}
 	},
 };
 
