@@ -5,3 +5,40 @@
 	margin: 0;
 	padding: 0;
 }
+
+body {
+	font-family: "Ubuntu", sans-serif;
+}
+
+.container {
+	display: grid;
+	place-content: center;
+	margin-top: 5rem;
+}
+
+#game-board {
+	background-color: blue;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	gap: 1em;
+	padding: 2em;
+}
+
+.field-block {
+	width: 100px;
+	aspect-ratio: 1;
+	background-color: white;
+}
+
+.X {
+	background: url(./assets/X.svg) center no-repeat;
+	aspect-ratio: 1;
+	background-size: contain;
+}
+
+.O {
+	background: url(./assets/O.svg) center no-repeat;
+	aspect-ratio: 1;
+	background-size: contain;
+}
