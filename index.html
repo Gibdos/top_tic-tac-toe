@@ -11,21 +11,27 @@
 	</head>
 	<body>
 		<header>
-			<div class="players">
+			<div class="setUp">
+				<input type="text" name="p1name" id="p1name" placeholder="P1 Name" />
+				<button onclick="setPName()" type="button">START GAME</button>
+				<input type="text" name="p2name" id="p2name" placeholder="P2 Name" />
+			</div>
+			<div class="players hidden">
 				<div class="p1">
-					<h2>Player One</h2>
+					<h2 id="player-1-name">&nbsp;</h2>
 					<p class="score1">0</p>
 				</div>
 				<div class="p2">
-					<h2>Player Two</h2>
+					<h2 id="player-2-name">&nbsp;</h2>
 					<p class="score2">0</p>
 				</div>
+				<button onclick="displayController.restartGame()" id="btn-restart" type="button">RESTART GAME</button>
 			</div>
-			<div class="outcome">
+			<div class="outcome hidden">
 				<h3 class="winner">GAME READY</h3>
 			</div>
 		</header>
-		<div class="container">
+		<div class="container hidden">
 			<div id="game-board"></div>
 		</div>
 	</body>

@@ -11,7 +11,34 @@ body {
 	background: url(./assets/bg_pattern.png);
 }
 
-.players {
+div.setUp {
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+input {
+	padding: 0.5em;
+	border: none;
+	border-radius: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+button {
+	padding: 1em;
+	background-color: black;
+	border: none;
+	border-radius: 0.5em;
+	color: white;
+	font-weight: bold;
+}
+
+button:hover,
+button:focus {
+	background-color: hsl(0, 0%, 40%);
+	cursor: pointer;
+}
+
+.players,
+.setUp {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	justify-items: center;
@@ -22,6 +49,10 @@ body {
 	width: 50%;
 	margin: 2em auto;
 	padding: 1em;
+}
+
+#btn-restart {
+	grid-column: span 2;
 }
 
 h2 {
@@ -75,6 +106,7 @@ h2 {
 	border-radius: 1em;
 	opacity: 1;
 	transition: opacity 250ms ease-in;
+	cursor: pointer;
 }
 
 .X {
@@ -111,4 +143,8 @@ h2 {
 		opacity: 0;
 		transform: rotateX(360deg);
 	}
+}
+
+.hidden {
+	opacity: 0;
 }

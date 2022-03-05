@@ -2,6 +2,7 @@ const game = {
 	gameBoard: ["", "", "", "", "", "", "", "", ""],
 	gameStart() {
 		playerOne.isRound = true;
+		displayController.createBoard();
 		this.addListener();
 		displayController.showPlayer();
 	},
@@ -62,6 +63,20 @@ function playerCreator(name, marker) {
 	(this.name = name), (this.marker = marker), (this.score = 0), (this.isRound = false);
 }
 
+function setPName() {
+	const p1Name = document.querySelector("#p1name").value;
+	const p2Name = document.querySelector("#p2name").value;
+	if (p1Name === "" || p2Name === "") {
+		displayController.showPlayerName();
+		game.gameStart();
+	} else {
+		playerOne.name = p1Name;
+		playerTwo.name = p2Name;
+		displayController.showPlayerName();
+		game.gameStart();
+	}
+}
+
 const displayController = {
 	reset() {
 		const gameFieldBlocks = document.querySelectorAll(".field-block");
@@ -91,6 +106,7 @@ const displayController = {
 			this.addHTML(clickedField, Block);
 		}
 	},
+
 	addHTML(clickedField, block) {
 		const fieldInner = clickedField.target;
 		const setPiece = clickedField.target.classList[0];
@@ -100,12 +116,14 @@ const displayController = {
 		game.switchPlayer();
 		game.checkRound();
 	},
+
 	showScore() {
 		const p1Score = document.querySelector(".score1");
 		const p2Score = document.querySelector(".score2");
 		p1Score.innerText = playerOne.score;
 		p2Score.innerText = playerTwo.score;
 	},
+
 	showPlayer() {
 		const p1 = document.querySelector(".p1");
 		const p2 = document.querySelector(".p2");
@@ -117,6 +135,7 @@ const displayController = {
 			p1.classList.remove("is-round");
 		}
 	},
+
 	showWinner(player) {
 		const h3Winner = document.querySelector(".winner");
 		h3Winner.innerText = `${player.name} wins!`;
@@ -129,10 +148,34 @@ const displayController = {
 			playField.appendChild(divField);
 		});
 	},
+
+	showPlayerName() {
+		const h2P1Name = document.querySelector("#player-1-name");
+		const h2P2Name = document.querySelector("#player-2-name");
+		h2P1Name.textContent = playerOne.name;
+		h2P2Name.textContent = playerTwo.name;
+		this.showGame();
+		this.hidePlayer();
+	},
+
+	showGame() {
+		const showField = document.querySelectorAll(".hidden");
+		showField.forEach((e) => {
+			e.classList.remove("hidden");
+		});
+	},
+
+	hidePlayer() {
+		const hidePlayerName = document.querySelector(".setUp");
+		hidePlayerName.classList.add("hidden");
+	},
+	restartGame() {
+		window.location.reload();
+	},
 };
 
 // Initialize Game
-displayController.createBoard();
-const playerOne = new playerCreator("PlayerOne", "X");
-const playerTwo = new playerCreator("PlayerTwo", "O");
-game.gameStart();
+// displayController.createBoard();
+const playerOne = new playerCreator("Player One", "X");
+const playerTwo = new playerCreator("Player Two", "O");
+// game.gameStart();
