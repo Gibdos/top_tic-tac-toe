@@ -19,13 +19,11 @@ const game = {
 		let dState1 = this.gameBoard[0] + game.gameBoard[4] + game.gameBoard[8];
 		let dState2 = this.gameBoard[2] + game.gameBoard[4] + game.gameBoard[6];
 		if (hState1 === "XXX" || hState2 === "XXX" || hState3 === "XXX" || vState1 === "XXX" || vState2 === "XXX" || vState3 === "XXX" || dState1 === "XXX" || dState2 === "XXX") {
-			console.log("PLAYER ONE WINS");
 			playerOne.score++;
 			displayController.showScore();
 			displayController.showWinner(playerOne);
 			displayController.reset();
 		} else if (hState1 === "OOO" || hState2 === "OOO" || hState3 === "OOO" || vState1 === "OOO" || vState2 === "OOO" || vState3 === "OOO" || dState1 === "OOO" || dState2 === "OOO") {
-			console.log("PLAYER TWO WINS");
 			playerTwo.score++;
 			displayController.showScore();
 			displayController.showWinner(playerTwo);
@@ -33,12 +31,11 @@ const game = {
 		} else if (this.gameBoard.includes("")) {
 			displayController.showPlayer();
 		} else {
-			console.log("THAT IS A TIE!");
-			const noOne = {
+			const noWinner = {
 				name: "No one",
 			};
 			displayController.showScore();
-			displayController.showWinner(noOne);
+			displayController.showWinner(noWinner);
 			displayController.reset();
 		}
 	},
@@ -69,26 +66,33 @@ const displayController = {
 	reset() {
 		const gameFieldBlocks = document.querySelectorAll(".field-block");
 		gameFieldBlocks.forEach((element) => {
-			element.innerHTML = "";
+			const fadeOut = element.classList.add("clear");
+			// element.innerHTML = "";
 		});
 		document.body.outerHTML = document.body.outerHTML;
-		game.reset();
+		setTimeout(() => {
+			const fadeIn = document.querySelectorAll(".clear");
+			fadeIn.forEach((e) => {
+				e.classList.remove("clear");
+				e.innerHTML = "";
+			});
+			game.reset();
+		}, 500);
 	},
 
 	createHTML(clickedField) {
 		if (playerOne.isRound) {
 			const Block = document.createElement("div");
-			Block.classList.add("X");
+			Block.classList.add("X", "placed-block");
 			this.addHTML(clickedField, Block);
 		} else {
 			const Block = document.createElement("div");
-			Block.classList.add("O");
+			Block.classList.add("O", "placed-block");
 			this.addHTML(clickedField, Block);
 		}
 	},
 	addHTML(clickedField, block) {
 		const fieldInner = clickedField.target;
-		console.log(fieldInner);
 		const setPiece = clickedField.target.classList[0] - 1;
 		const marker = block.classList[0];
 		clickedField.target.appendChild(block);
