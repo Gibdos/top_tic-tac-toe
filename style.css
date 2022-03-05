@@ -116,7 +116,7 @@ h2 {
 .field-block {
 	width: 100px;
 	aspect-ratio: 1;
-	background-color: hsl(0, 0%, 80%);
+	background-color: hsl(183, 100%, 35%);
 	border-radius: 1em;
 	opacity: 1;
 	transition: opacity 250ms ease-in;
