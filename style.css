@@ -49,6 +49,7 @@ button:focus {
 	width: 50%;
 	margin: 2em auto;
 	padding: 1em;
+	transition: opacity 350ms ease-in;
 }
 
 #btn-restart {
@@ -80,12 +81,14 @@ h2 {
 	margin: 0 auto;
 	padding: 0.5em;
 	font-size: 2em;
+	transition: opacity 350ms ease-in;
 }
 
 .container {
 	display: grid;
 	place-content: center;
 	margin-top: 2em;
+	transition: opacity 350ms ease-in;
 }
 
 #game-board {
