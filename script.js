@@ -22,17 +22,23 @@ const game = {
 			console.log("PLAYER ONE WINS");
 			playerOne.score++;
 			displayController.showScore();
+			displayController.showWinner(playerOne);
 			displayController.reset();
 		} else if (hState1 === "OOO" || hState2 === "OOO" || hState3 === "OOO" || vState1 === "OOO" || vState2 === "OOO" || vState3 === "OOO" || dState1 === "OOO" || dState2 === "OOO") {
 			console.log("PLAYER TWO WINS");
 			playerTwo.score++;
 			displayController.showScore();
+			displayController.showWinner(playerTwo);
 			displayController.reset();
 		} else if (this.gameBoard.includes("")) {
 			displayController.showPlayer();
 		} else {
 			console.log("THAT IS A TIE!");
+			const noOne = {
+				name: "No one",
+			};
 			displayController.showScore();
+			displayController.showWinner(noOne);
 			displayController.reset();
 		}
 	},
@@ -106,6 +112,10 @@ const displayController = {
 			p2.classList.add("is-round");
 			p1.classList.remove("is-round");
 		}
+	},
+	showWinner(player) {
+		const h3Winner = document.querySelector(".winner");
+		h3Winner.innerText = `${player.name} wins!`;
 	},
 };
 
