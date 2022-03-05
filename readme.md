@@ -2,7 +2,7 @@
 
 ## What is this?
 
-A game of Tic Tac Toe written in HTML, CSS and JavaScript. Based on the "The Odin Project" Foundation curriculum found [here](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/tic-tac-toe).
+A game of Tic Tac Toe written in HTML, CSS and JavaScript. Based on the "The Odin Project" Full Stack JavaScript curriculum found [here](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/tic-tac-toe).
 
 ## Features
 
