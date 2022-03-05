@@ -93,7 +93,7 @@ const displayController = {
 	},
 	addHTML(clickedField, block) {
 		const fieldInner = clickedField.target;
-		const setPiece = clickedField.target.classList[0] - 1;
+		const setPiece = clickedField.target.classList[0];
 		const marker = block.classList[0];
 		clickedField.target.appendChild(block);
 		game.gameBoard[setPiece] = marker;
@@ -121,9 +121,18 @@ const displayController = {
 		const h3Winner = document.querySelector(".winner");
 		h3Winner.innerText = `${player.name} wins!`;
 	},
+	createBoard() {
+		game.gameBoard.forEach((e, i) => {
+			const playField = document.querySelector("#game-board");
+			const divField = document.createElement("div");
+			divField.classList.add(i, "field-block");
+			playField.appendChild(divField);
+		});
+	},
 };
 
 // Initialize Game
+displayController.createBoard();
 const playerOne = new playerCreator("PlayerOne", "X");
 const playerTwo = new playerCreator("PlayerTwo", "O");
 game.gameStart();
