@@ -164,6 +164,13 @@ div.hidden {
 	transform: translateY(-1000%);
 }
 
+.github {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	transition: all 250ms ease-in-out 1000ms;
+}
+
 @media (max-width: 1200px) {
 	header .setUp {
 		width: 95%;
