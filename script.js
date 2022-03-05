@@ -1,6 +1,7 @@
 const game = {
 	gameBoard: ["", "", "", "", "", "", "", "", ""],
 	gameStart() {
+		document.querySelector("#start-button").setAttribute("disabled", "1");
 		playerOne.isRound = true;
 		displayController.createBoard();
 		this.addListener();
