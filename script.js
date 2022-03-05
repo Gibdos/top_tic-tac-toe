@@ -2,6 +2,7 @@ const game = {
 	gameBoard: ["", "", "", "", "", "", "", "", ""],
 	gameStart() {
 		playerOne.isRound = true;
+		this.addListener();
 	},
 	switchPlayer() {
 		playerOne.isRound = !playerOne.isRound;
@@ -17,13 +18,37 @@ const game = {
 		let dState1 = this.gameBoard[0] + game.gameBoard[4] + game.gameBoard[8];
 		let dState2 = this.gameBoard[2] + game.gameBoard[4] + game.gameBoard[6];
 		if (hState1 === "XXX" || hState2 === "XXX" || hState3 === "XXX" || vState1 === "XXX" || vState2 === "XXX" || vState3 === "XXX" || dState1 === "XXX" || dState2 === "XXX") {
-			alert("PLAYER ONE WINS");
+			console.log("PLAYER ONE WINS");
+			playerOne.score++;
+			displayController.showScore();
+			displayController.reset();
 		} else if (hState1 === "OOO" || hState2 === "OOO" || hState3 === "OOO" || vState1 === "OOO" || vState2 === "OOO" || vState3 === "OOO" || dState1 === "OOO" || dState2 === "OOO") {
-			alert("PLAYER TWO WINS");
+			console.log("PLAYER TWO WINS");
+			playerTwo.score++;
+			displayController.showScore();
+			displayController.reset();
 		} else if (this.gameBoard.includes("")) {
 		} else {
-			alert("THAT IS A TIE!");
+			console.log("THAT IS A TIE!");
+			displayController.showScore();
+			displayController.reset();
 		}
+	},
+	reset() {
+		this.gameBoard = ["", "", "", "", "", "", "", "", ""];
+		this.addListener();
+	},
+	addListener() {
+		const eventHandler = document.querySelectorAll(".field-block");
+		eventHandler.forEach((element) => {
+			element.addEventListener(
+				"click",
+				(e) => {
+					displayController.createHTML(e);
+				},
+				{ once: true }
+			);
+		});
 	},
 };
 
@@ -32,11 +57,13 @@ function playerCreator(name, marker) {
 }
 
 const displayController = {
-	reset: function resetField() {
+	reset() {
 		const gameFieldBlocks = document.querySelectorAll(".field-block");
 		gameFieldBlocks.forEach((element) => {
 			element.innerHTML = "";
 		});
+		document.body.outerHTML = document.body.outerHTML;
+		game.reset();
 	},
 
 	createHTML(clickedField) {
@@ -51,22 +78,22 @@ const displayController = {
 		}
 	},
 	addHTML(clickedField, block) {
+		const fieldInner = clickedField.target;
+		console.log(fieldInner);
 		const setPiece = clickedField.target.classList[0] - 1;
 		const marker = block.classList[0];
-		console.log(clickedField.target, block);
 		clickedField.target.appendChild(block);
 		game.gameBoard[setPiece] = marker;
 		game.switchPlayer();
 		game.checkRound();
 	},
+	showScore() {
+		const p1Score = document.querySelector(".score1");
+		const p2Score = document.querySelector(".score2");
+		p1Score.innerText = playerOne.score;
+		p2Score.innerText = playerTwo.score;
+	},
 };
-
-const eventHandler = document.querySelectorAll(".field-block");
-eventHandler.forEach((element) => {
-	element.addEventListener("click", (e) => {
-		displayController.createHTML(e);
-	});
-});
 
 // Initialize Game
 const playerOne = new playerCreator("PlayerOne", "X");
