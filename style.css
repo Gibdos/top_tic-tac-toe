@@ -22,6 +22,7 @@ input {
 	border: none;
 	border-radius: 0.5em;
 	margin-bottom: 0.5em;
+	width: 100%;
 }
 
 button {
@@ -31,6 +32,7 @@ button {
 	border-radius: 0.5em;
 	color: white;
 	font-weight: bold;
+	width: 100%;
 }
 
 button:hover,
@@ -51,6 +53,7 @@ button:focus {
 	width: 50%;
 	margin: 2em auto;
 	padding: 1em;
+	gap: 1em;
 }
 
 .players {
@@ -94,7 +97,7 @@ h2 {
 .container {
 	display: grid;
 	place-content: center;
-	margin-top: 2em;
+	margin-block: 2em;
 	transition: all 500ms ease-in-out;
 	transform: translateY(0%);
 }
@@ -159,4 +162,39 @@ h2 {
 div.hidden {
 	opacity: 0;
 	transform: translateY(-1000%);
+}
+
+@media (max-width: 1200px) {
+	header .setUp {
+		width: 95%;
+	}
+
+	.setUp * {
+		font-size: 0.7rem;
+	}
+
+	#btn-restart {
+		width: 80%;
+		padding: 0.2em;
+	}
+
+	.players,
+	.outcome {
+		width: 75%;
+	}
+
+	.p1,
+	.p2 {
+		font-size: 0.5rem;
+	}
+
+	.outcome {
+		font-size: 0.6rem;
+	}
+}
+
+@media (max-width: 700px) {
+	.field-block {
+		width: 80px;
+	}
 }

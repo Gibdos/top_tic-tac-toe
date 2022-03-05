@@ -6,10 +6,9 @@ A game of Tic Tac Toe written in HTML, CSS and JavaScript. Based on the "The Odi
 
 ## Features
 
-- [x] Non-Responsive UI
+- [x] Responsive Layout
 - [x] Shows Player One / Player Two Score
 - [x] Shows winner after each round
-- [ ] Responsive Layout
 - [ ] Computer opponent
 
 ## Image
